@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="Install Ubuntu in WSL" Language="1033" Version="1.0.0.0" Manufacturer="Confidential Company"
+			 UpgradeCode="60D88B22-AA04-41D4-8DA1-1D835F1573A0">
+    <Package InstallerVersion="200" Compressed="no" InstallPrivileges="elevated" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="no" />
+
+    <Binary Id="downloadUbuntu.exe" SourceFile="DownloadUbuntuCustomAction\downloadUbuntu.exe"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="LoadUbuntuIntoWSL" />
+      </Directory>
+    </Directory>
+
+    <CustomAction Id="QtExecDeferredInstallUbuntu" BinaryKey="downloadUbuntu.exe" ExeCommand=""
+                Execute="deferred" Return="ignore" Impersonate="yes" />
+    
+    <InstallExecuteSequence>
+      <Custom Action="QtExecDeferredInstallUbuntu" After="InstallFiles">
+        <![CDATA[NOT Installed AND NOT UPGRADINGPRODUCTCODE]]>
+      </Custom>
+    </InstallExecuteSequence>
+
+    <Feature Id="ProductFeature" Title="Install Ubuntu in WSL" Level="1">
+      <Component Id="MyFile" Directory="INSTALLFOLDER">
+        <File Source="MyFile.txt" Id="MyFile" KeyPath="yes" />
+      </Component>
+    </Feature>
+
+  </Product>
+</Wix>

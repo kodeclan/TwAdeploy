@@ -1,0 +1,33 @@
+--- 
+title: "Automated deployment of Terraform and Ansible (TwA) to a new Virtual Machine"
+author: "mlgopher"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: mlgopher/TwAdeploy/docs
+cover-image: "images/cover.png"
+apple-touch-icon: "touch-icon.png"
+apple-touch-icon-size: 120
+favicon: "favicon.ico"
+description: "This is a tutorial for using the Terraform and Ansible (TwA) golang program to automatically create a new Virtual Machine with Gitea, Drone, PostgreSQL, Nginx, Fail2Ban and HTTPS by Let's Encrypt all fully configured."
+---
+
+# Prerequisites
+
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.link='https://github.com/mlgopher/TwAdeploy'}
+knitr::include_graphics('images/cover.png', dpi = NA)
+```
+
+In order to use the Terraform with Ansible Deploy ("TwA Deploy", or simply "TwA") program, you will need the following three items:
+
+1. A Linux/Unix computer that is capable of supporting both Python 3.5 (or higher) and Golang version 1.11 (or higher).  The computer, of course, must also have internet access.
+2. A Google (a.k.a. Gmail) account (this is required in order to use the Google Cloud Platform).
+3. A major Credit Card (this is also required in order to use the Google Cloud Platform.  However, users who qualify for the Google Cloud Platform [free trial](https://cloud.google.com/free/docs/gcp-free-tier#free-trial) should be able to avoid any actual charges for the duration of Google's free trial.  Nevertheless, Google still requires a credit card even if you qualify for Google's free trial.)
+
+
+A computer running any recent version of Linux or MacOS should work fine with the TwA program.  Alternately, a computer running either Windows 10 (version  1607 or later) or Windows Server 2019 (any version) should also work fine (since the TwA install program will enable [Windows Subsystem for Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) (WSL) for use by Terraform and Ansible).  All examples and screen shots for this tutorial were actually done on a Windows 10 computer running WSL (upon which Ubuntu 18.04 was running).

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+	<Bundle Name="TwA deploy" Version="1.0.0.0" Manufacturer="Confidential Company" UpgradeCode="59adefdb-9854-4063-9ad8-fe0448478a7a">
+		<BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense">
+          <bal:WixStandardBootstrapperApplication
+            LicenseFile="license.rtf"
+            LogoFile="cover.png"
+            />
+        </BootstrapperApplicationRef>
+    <Chain>
+      <MsiPackage Id="ActivateWSL" SourceFile="$(var.ActivateWSLPackage.TargetPath)"
+                  DisplayInternalUI="yes" Compressed="yes" Vital="yes" ForcePerMachine="yes" Visible="no"/>
+      <MsiPackage Id="LoadUbuntuIntoWSL" SourceFile="$(var.LoadUbuntuIntoWSL.TargetPath)"
+                  DisplayInternalUI="yes" Compressed="yes" Vital="yes" ForcePerMachine="yes" Visible="no"/>
+    </Chain>
+	
+  </Bundle>
+</Wix>

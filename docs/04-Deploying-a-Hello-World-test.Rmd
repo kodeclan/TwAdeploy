@@ -1,0 +1,51 @@
+# Deploying a simple, test Google Cloud VM
+
+## Step one - download JSON credentials for your Google Cloud Project
+
+This section assumes that you already have identified the Google Cloud Project you wish to use.  If this is not the case, please see the previous section on [Creating a new Google Cloud Project](./creating-a-new-google-cloud-project.html).
+
+After you have identified the Google Cloud Project that you wish to use, please download a JSON file that contains the credentials to the Google Compute Engine default service account. This JSON file can be downloaded at: https://console.cloud.google.com/apis/credentials/serviceaccountkey .  Please rename this JSON file "myHelloWorldTest.json" and copy this file to the /projects/TwAdeploy folder.
+
+## Step two - generate the Hellow World test VM
+
+From the /projects/TwAdeploy folder, run the following command:
+
+terraform apply -var credentials=/projects/TwAdeploy/myHelloWorldTest.json -var project=myHelloWorldTest
+
+Note the IP Address of the VM created.
+
+## Step three - connect to the Hello World test VM via SSH
+
+On any computer or device connected to the Internet, note that the VM htsquirrel-vm-??????? is "green" indicating it is running:
+
+https://console.cloud.google.com/compute/instances?project=myHelloWorldTest&instancessize=50
+
+Change into the .keys subfolder using this command:
+
+cd .keys
+
+Then from the /projects/TwAdeploy/.keys folder, run the following two commands:
+
+/projects/TwAdeploy/.keys# sudo chmod 600 *
+
+/projects/TwAdeploy/.keys# ssh -i NAME-OF-SSH-KEY ansible@??.???.???.??
+
+Note for the second command above, NAME-OF-SSH-KEY should be replaced by the actual name of the SSH key.  In addition, ??.???.???.?? should be replaced with the IP Address of the VM created as noted in step two above.
+
+After running the second command, you should be connected to the Hello World test VM via SSH.
+
+## Shutdown and Clean up
+
+After connecting via SSH, shut down the Virtual Machine with the following command:
+
+sudo shutdown now
+
+On any computer or device connected to the Internet, note that the VM htsquirrel-vm-??????? is "grey" indicating it is no longer running:
+
+https://console.cloud.google.com/compute/instances?project=myHelloWorldTest&instancessize=50
+
+Finally, run the following command to delete and clean up any resources this Hello World test is using.  From the /projects/TwAdeploy folder, run the following command:
+
+terraform destroy -var credentials=/projects/TwAdeploy/myHelloWorldTest.json -var project=myHelloWorldTest
+
+Deleting un-needed resources reduces costs.

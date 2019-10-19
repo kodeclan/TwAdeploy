@@ -1,0 +1,13 @@
+**.backup
+**.bak
+**.tmp
+**.tfstate
+**.lock.info
+
+**.keys.json
+
+.terraform/
+.keys/
+
+**.retry
+.Rproj.user

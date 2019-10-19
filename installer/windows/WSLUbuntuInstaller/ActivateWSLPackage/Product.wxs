@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="Activate WSL Subsystem" Language="1033" Version="1.0.0.0" Manufacturer="Confidential Company"
+			 UpgradeCode="0992F11C-FB8E-4225-973B-393D6D8E9666">
+    <Package InstallerVersion="200" Compressed="no" InstallScope="perMachine" InstallPrivileges="elevated" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="no" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="ActivateWSL" />
+      </Directory>
+    </Directory>
+
+    <Property Id="QtExecDeferredActivateWSL"
+              Value="&quot;dism.exe&quot; /online /enable-feature /norestart /featurename:Microsoft-Windows-Subsystem-Linux" />
+    <CustomAction Id="QtExecDeferredActivateWSL" BinaryKey="WixCA" DllEntry="WixQuietExec"
+                Execute="deferred" Return="ignore" Impersonate="no" />
+     
+    <InstallExecuteSequence>
+      <Custom Action="QtExecDeferredActivateWSL" After="InstallFiles">
+        <![CDATA[NOT Installed AND NOT UPGRADINGPRODUCTCODE]]>
+      </Custom>
+      <ForceReboot Before="InstallFinalize">
+        <![CDATA[NOT Installed AND NOT UPGRADINGPRODUCTCODE]]>
+      </ForceReboot>
+    </InstallExecuteSequence>
+
+    <Feature Id="ProductFeature" Title="Installer" Level="1">
+      <Component Id="MyFile" Directory="INSTALLFOLDER">
+        <File Source="MyFile.txt" Id="MyFile" KeyPath="yes" />
+      </Component>
+    </Feature>
+    
+  </Product>
+</Wix>

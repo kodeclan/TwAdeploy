@@ -1,0 +1,14 @@
+# Introduction {#intro}
+
+The Terraform with Ansible Deploy program (abbreviated "TwA Deploy", or simply "TwA") is a special purpose program whose sole focus is to automatically deploy two leading Infrastructure as Code (IaC) tools so that these two tools are configured to work together in a more automated fashion for common IaC tasks.  These two IaC tools are [Terraform](https://www.terraform.io/) and [Ansible](https://docs.ansible.com/ansible/latest/index.html).  TwA Deploy includes an automated installation program for all supported operating systems (i.e. Linux, Mac and Windows).  
+
+TwA Deploy also includes files to provision a simple "Hello World" example VM.  This "Hello World" example only includes a ping test to confirm the VM deployment was successful.  This "Hello World" example can be used to test and confirm that TwA Deploy is working correctly.  The code for the "Hello World" example consists of four TF files and is written in [Terraform's configuration language](https://www.terraform.io/docs/configuration/).  TwA's Terraform configuration files were mostly custom written for this project, but were initially "inspired from" and/or "evolved from" the Terraform configuration information found at https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform as well as (insert a URL that served to "inspire" the Terraform SSH and/or configurations :-) ).  
+
+At the time of this writing, a "Hello World" example only supports the Google Cloud Platform.  Google Cloud is the cloud environment that I (mlgopher) use for my projects.  However, it is my hope that in the future others will add examples to TwA for other cloud environments such as AWS, MS Azure, etc. In addition, it should also be possible to extend TwA to support on-premise (without any cloud environment) using virtualization tools such as VirtualBox (see https://github.com/terra-farm/terraform-provider-virtualbox ).  
+
+## Code and Documentation contributions
+We welcome contributions to TwA and will review all contributions in a timely manner. Contributions are managed using GitHub's workflow and we hope to make this process as easy as possible.  If you would like to work on adding new functionality to TwA please consider submitting a pull request on GitHub.  Instructions (not written by the TwA team) for how to submit a pull request on GitHub can be found in many places including [here](https://learn.sparkfun.com/tutorials/using-github-to-share-with-sparkfun/all#pull-requests) and [here](https://github.com/gorgonia/gorgonia/blob/master/CONTRIBUTING.md).
+
+## How To Get Support
+The best way of support right now is to open a ticket on Github.  Instructions (not written by the TwA team) for how to open a ticket on GitHub can be found [here](https://help.github.com/articles/creating-an-issue/)
+

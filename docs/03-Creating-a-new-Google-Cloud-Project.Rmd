@@ -1,0 +1,7 @@
+# Creating a new Google Cloud Project
+
+If you already have a Google Cloud Project you wish to use, you may skip this section and proceed the next section on [Creating a "Hello World" Test VM](./deploying-a-simple-test-google-cloud-vm.html).
+
+Otherwise, you will need to create a new Google Cloud Project.  This tutorial will assume your project is named "myHelloWorldTest", however you may use any name you prefer and substitute accordingly.  See the YouTube video below for the steps to create a new project in the Google Cloud Platform:
+
+https://www.youtube.com/watch?v=7n9DkOzjwlA

@@ -1,0 +1,101 @@
+# Installing TwA
+
+TwA Deploy includes an automated installation program for all three supported operating systems:
+
+1. Linux
+1. Mac
+1. Windows
+
+Please refer to the sub-section below to install TwA for your operating system.
+
+## Linux
+
+Check to see if git is installed on your system.  Run:
+
+git --version
+
+The system should display the git version.  For example:
+
+git version 2.17.1
+
+Git is backwards compatible, so any version written in the last few years will work fine for our purposes.  See https://en.wikipedia.org/wiki/Git#Releases for the release dates for git.
+
+If Git is not installed on your system, please install it using the following command:
+
+apt-get install git-core
+
+You may be asked to confirm the download and installation; simply enter y to confirm. It’s that simple, Git should be installed and ready to use!
+
+Create a directory for your TwA projects:
+
+mkdir /projects
+
+sudo chmod 777 /projects   (Note: 777 is bad security practice.  TODO: tighten up security.)
+
+Change into the the new projects directory:
+
+cd /projects
+
+and pull the TwA project from GitHub:
+
+git clone https://github.com/mlgopher/TwAdeploy.git
+
+Change into the Linux installer folder for TwA:
+
+cd /projects/TwAdeploy/installer/linux
+
+Then run this command to allow the *.sh files to be run:
+
+sudo chmod 777 *   (Note: 777 is bad security practice.  TODO: tighten up security.)
+
+Then run this command to install the latest version of Terraform:
+
+./terraform.sh
+
+Then run this command to install the latest version of Ansible:
+
+./ansible.sh
+
+Change into the main TwA directory:
+
+cd /projects/TwAdeploy/
+
+Then run this command to initialize Terraform:
+
+terraform init
+
+Assuming no errors occurred with the above commands, TwA is now installed on your system.
+
+
+## MacOS
+
+MacOS is similar enough to Linux that the install instructions for Linux will probably work just fine for Mac.  Please follow the [Linux install instructions](./installing-twa.html#linux) when installing TwA on a Mac, and let us know if you encounter any issues!
+
+## Windows
+
+In order to install TwA a recent version of Micrsoft Windows is required.  Specifically, either of the folllowing:
+
+* Windows 10 (version  1607 or later) 
+
+or 
+
+* Windows Server 2019 (any version)
+
+minimum versions of Windows is required in order to install TwA.
+
+To install TwA, simply download & run TwA-deploy.exe install program from:
+
+https://www.TwAdeploy.org/TwA-deploy.exe
+
+Note, the above [TwA Windows installation program](./TwA-deploy.exe) will require a reboot of your Micrsoft Windows computer in order to complete.  After the install is completed, simply run the following command:
+
+* wsl
+
+to open the WSL environment within Windows.  Within WSL, run the following two commands:
+
+* sudo apt-get update
+* sudo apt-get upgrade (Often takes a LONG time for new WSL installs.  Please be patient...)
+* sudo apt-get auto-remove
+
+At this point, the setup process will need to continue within the WSL environment.  Please follow the [Linux install instructions](./installing-twa.html#linux) when installing TwA within WSL on Windows. 
+ 
