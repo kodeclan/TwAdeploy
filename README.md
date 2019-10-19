@@ -2,6 +2,8 @@
 
 The Terraform with Ansible Deploy program
 
+For full documentation see: http://www.TwAdeploy.org/
+
 Prerequisites:
 
 1. Terraform
