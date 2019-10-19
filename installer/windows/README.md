@@ -11,7 +11,7 @@ Build machine should have the following three packages installed:
 
 
 ***********************************
-GwD WiX installer build instructions:
+TwAdeploy WiX installer build instructions:
 
 Step one: Build golang code used for WiX Toolset custom action
 
