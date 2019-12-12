@@ -13,7 +13,7 @@ resource "null_resource" "keygen" {
   }
 
   provisioner "local-exec" {
-    when    = "destroy"
+    when    = destroy
     command = "rm ${local.keyfile_pvt} ${local.keyfile_pvt}.out ${local.keyfile_pub}"
   }
 }
