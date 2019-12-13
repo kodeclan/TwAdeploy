@@ -44,6 +44,12 @@ variable "instances" {
   description = "The number of instances to spawn"
 }
 
+variable "bootstrapper" {
+  type        = string
+  default     = "bootstrap.sh"
+  description = "The number of instances to spawn"
+}
+
 locals {
   instance_id   = random_id.instance_id.hex
   all_instances = google_compute_instance.twa[*].id

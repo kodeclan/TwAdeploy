@@ -49,7 +49,7 @@ resource "google_compute_instance" "twa" {
   }
 
   // Run the bootstrapper
-  metadata_startup_script = file("bootstrap.sh")
+  metadata_startup_script = file(var.bootstrapper)
 
   // Metadata: We use this to set the SSH keys
   metadata = {
