@@ -52,6 +52,7 @@ variable "bootstrapper" {
 
 locals {
   instance_id   = random_id.instance_id.hex
+  firewall_id   = random.id.firewall_id.hex
   all_instances = google_compute_instance.twa[*].id
   instance_ips  = google_compute_instance.twa[*].network_interface.0.access_config.0.nat_ip
   keyfile_pvt   = "${var.keydir}/${local.instance_id}"

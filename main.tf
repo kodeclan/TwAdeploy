@@ -3,6 +3,10 @@ resource "random_id" "instance_id" {
   byte_length = 4
 }
 
+resource "random_id" "firewall_id" {
+  byte_length = 4
+}
+
 resource "null_resource" "keygen" {
   provisioner "local-exec" {
     command = "mkdir -p ${var.keydir}"
@@ -19,7 +23,7 @@ resource "null_resource" "keygen" {
 }
 
 resource "google_compute_firewall" "default_firewall" {
-  name    = "tf-ssh-firewall"
+  name    = "tf-ssh-firewall-${local.firewall_id}"
   network = "default"
 
   allow {
