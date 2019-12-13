@@ -32,11 +32,11 @@ resource "google_compute_firewall" "default_firewall" {
 }
 
 // A single Google Cloud Engine instance
-resource "google_compute_instance" "htsquirrel" {
+resource "google_compute_instance" "twa" {
   count    = var.instances
   provider = google
 
-  name         = "htsquirrel-vm-${local.instance_id}-${count.index}"
+  name         = "${var.machine_name}-vm-${local.instance_id}-${count.index}"
   machine_type = "f1-micro"
   zone         = "us-east4-c"
 

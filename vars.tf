@@ -14,6 +14,12 @@ variable "username" {
   description = "The username that will be used to connect to the GCP instance via SSH."
 }
 
+variable "machine_name" {
+  type        = string
+  default     = "twain"
+  description = "The name prefix to be used for the VM instances. Useful in distinguishing and categorizing the machines."
+}
+
 variable "keydir" {
   type        = string
   default     = ".keys"
@@ -40,14 +46,14 @@ variable "instances" {
 
 locals {
   instance_id   = random_id.instance_id.hex
-  all_instances = google_compute_instance.htsquirrel[*].id
-  instance_ips  = google_compute_instance.htsquirrel[*].network_interface.0.access_config.0.nat_ip
+  all_instances = google_compute_instance.twa[*].id
+  instance_ips  = google_compute_instance.twa[*].network_interface.0.access_config.0.nat_ip
   keyfile_pvt   = "${var.keydir}/${local.instance_id}"
   keyfile_pub   = "${var.keydir}/${local.instance_id}.pub"
 }
 
 // A variable for extracting the external ip of the instance
 output "ip" {
-  value = google_compute_instance.htsquirrel[*].network_interface.0.access_config.0.nat_ip
+  value = google_compute_instance.twa[*].network_interface.0.access_config.0.nat_ip
 }
 
