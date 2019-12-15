@@ -3,6 +3,10 @@ resource "random_id" "instance_id" {
   byte_length = 4
 }
 
+resource "random_id" "firewall_id" {
+  byte_length = 4
+}
+
 resource "null_resource" "keygen" {
   provisioner "local-exec" {
     command = "mkdir -p ${var.keydir}"
@@ -13,13 +17,13 @@ resource "null_resource" "keygen" {
   }
 
   provisioner "local-exec" {
-    when    = "destroy"
+    when    = destroy
     command = "rm ${local.keyfile_pvt} ${local.keyfile_pvt}.out ${local.keyfile_pub}"
   }
 }
 
 resource "google_compute_firewall" "default_firewall" {
-  name    = "tf-ssh-firewall"
+  name    = "tf-ssh-firewall-${local.firewall_id}"
   network = "default"
 
   allow {
@@ -32,11 +36,11 @@ resource "google_compute_firewall" "default_firewall" {
 }
 
 // A single Google Cloud Engine instance
-resource "google_compute_instance" "htsquirrel" {
+resource "google_compute_instance" "twa" {
   count    = var.instances
   provider = google
 
-  name         = "htsquirrel-vm-${local.instance_id}-${count.index}"
+  name         = "${var.machine_name}-vm-${local.instance_id}-${count.index}"
   machine_type = "f1-micro"
   zone         = "us-east4-c"
 
@@ -49,7 +53,7 @@ resource "google_compute_instance" "htsquirrel" {
   }
 
   // Run the bootstrapper
-  metadata_startup_script = file("bootstrap.sh")
+  metadata_startup_script = file(var.bootstrapper)
 
   // Metadata: We use this to set the SSH keys
   metadata = {

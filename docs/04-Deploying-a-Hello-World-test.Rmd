@@ -16,7 +16,7 @@ Note the IP Address of the VM created.
 
 ## Step three - connect to the Hello World test VM via SSH
 
-On any computer or device connected to the Internet, note that the VM htsquirrel-vm-??????? is "green" indicating it is running:
+On any computer or device connected to the Internet, note that the VM *machine-name*-vm-??????? is "green" indicating it is running:
 
 https://console.cloud.google.com/compute/instances?project=myHelloWorldTest&instancessize=50
 
@@ -40,7 +40,7 @@ After connecting via SSH, shut down the Virtual Machine with the following comma
 
 sudo shutdown now
 
-On any computer or device connected to the Internet, note that the VM htsquirrel-vm-??????? is "grey" indicating it is no longer running:
+On any computer or device connected to the Internet, note that the VM *machine-name*-vm-??????? is "grey" indicating it is no longer running:
 
 https://console.cloud.google.com/compute/instances?project=myHelloWorldTest&instancessize=50
 
