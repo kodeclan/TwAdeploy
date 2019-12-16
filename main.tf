@@ -41,8 +41,8 @@ resource "google_compute_instance" "twa" {
   provider = google
 
   name         = "${var.machine_name}-vm-${local.instance_id}-${count.index}"
-  machine_type = "f1-micro"
-  zone         = "us-east4-c"
+  machine_type = var.machine_type
+  zone         = var.machine_zone
 
   tags = ["external-ssh"]
 

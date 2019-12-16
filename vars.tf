@@ -20,6 +20,18 @@ variable "machine_name" {
   description = "The name prefix to be used for the VM instances. Useful in distinguishing and categorizing the machines."
 }
 
+variable "machine_type" {
+  type        = string
+  default     = "f1-micro"
+  description = "The machine type. See: https://cloud.google.com/compute/docs/machine-types"
+}
+
+variable "machine_zone" {
+  type        = string
+  default     = "us-east4-c"
+  description = "The machine datacenter zone. See https://cloud.google.com/compute/docs/regions-zones/"
+}
+
 variable "keydir" {
   type        = string
   default     = ".keys"
