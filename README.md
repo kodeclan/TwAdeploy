@@ -18,3 +18,5 @@ The one-line syntax to create a new instance is as follows:
     terraform (plan|apply|delete) -var credentials=__path-to-json-file__ -var project=__project-name__
 
 If the variables are not provided, Terraform will ask for the variables at runtime.
+
+For an example of a project using TwAdeploy, see:  https://github.com/mlgopher/bgp-traffic-engineering
