@@ -49,6 +49,7 @@ resource "google_compute_instance" "twa" {
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-1804-lts"
+	  size = 450
     }
   }
 
@@ -69,7 +70,7 @@ resource "google_compute_instance" "twa" {
   }
 
   scheduling {
-    preemptible       = true
+    preemptible       = false
     automatic_restart = false
   }
 

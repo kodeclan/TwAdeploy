@@ -22,7 +22,7 @@ variable "machine_name" {
 
 variable "machine_type" {
   type        = string
-  default     = "f1-micro"
+  default     = "e2-standard-2"
   description = "The machine type. See: https://cloud.google.com/compute/docs/machine-types"
 }
 
