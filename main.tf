@@ -8,17 +8,22 @@ resource "random_id" "firewall_id" {
 }
 
 resource "null_resource" "keygen" {
+  triggers = {
+    key_pvt = local.keyfile_pvt
+    key_pub = local.keyfile_pub
+  }
+
   provisioner "local-exec" {
     command = "mkdir -p ${var.keydir}"
   }
 
   provisioner "local-exec" {
-    command = "yes y | ssh-keygen -t rsa -b 4096 -N '' -C 'Key for username: ${var.username}' -f '${local.keyfile_pvt}' > '${local.keyfile_pvt}.out'"
+    command = "yes y | ssh-keygen -t rsa -b 4096 -N '' -C 'Key for username: ${var.username}' -f '${self.triggers.key_pvt}' > '${self.triggers.key_pvt}.out'"
   }
 
   provisioner "local-exec" {
     when    = destroy
-    command = "rm ${local.keyfile_pvt} ${local.keyfile_pvt}.out ${local.keyfile_pub}"
+    command = "rm ${self.triggers.key_pvt} ${self.triggers.key_pvt}.out ${self.triggers.key_pub}"
   }
 }
 
